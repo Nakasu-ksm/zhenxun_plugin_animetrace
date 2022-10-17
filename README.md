@@ -2,7 +2,7 @@
 
 基于AnimeTrace API的动漫查询系统（真寻插件）
 
-通过ai.animedb.cn 提供的API来通过动漫识别
+通过 https://ai.animedb.cn 提供的API来通过动漫识别
 
 #使用方法
 指令：
