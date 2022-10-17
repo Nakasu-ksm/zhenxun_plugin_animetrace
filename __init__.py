@@ -2,13 +2,13 @@ import random
 from configs.path_config import IMAGE_PATH, TEMP_PATH
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.adapters.cqhttp import Bot, MessageEvent, GroupMessageEvent
+#from nonebot.adapters.cqhttp import Bot, MessageEvent, GroupMessageEvent
+#前面这行是旧版真寻使用的，如果您是旧版请解除前面一行注释并注释掉下面一行
+from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent
 from services.log import logger
 from utils.http_utils import AsyncHttpx
 import json
-import urllib
 from utils.utils import get_message_img
-from urllib import request
 
 __zx_plugin_name__ = "动漫人物查询"
 __plugin_usage__ = """
@@ -39,7 +39,7 @@ probl = on_command("多可能动漫查询", aliases={"多可能人物查询"}, p
 async def handle_event(bot: Bot, event: MessageEvent, state: T_State):
     img_url = get_message_img(event.json())
     state["img_url"] = img_url
-    urllib.request.urlretrieve(state["img_url"][0], filename="1.png")
+    await AsyncHttpx.download_file(state["img_url"][0], "1.png")
     files = {
         'image': open("1.png", 'rb')
     }
@@ -69,7 +69,7 @@ def link(string, name="越谷 小鞠"):
 async def handle_event(bot: Bot, event: MessageEvent, state: T_State):
     img_url = get_message_img(event.json())
     state["img_url"] = img_url
-    urllib.request.urlretrieve(state["img_url"][0], filename="1.png")
+    await AsyncHttpx.download_file(state["img_url"][0], "1.png")
 
     files = {
         'image': open("1.png", 'rb')
