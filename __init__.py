@@ -43,7 +43,7 @@ async def handle_event(bot: Bot, event: MessageEvent, state: T_State):
     files = {
         'image': open("1.png", 'rb')
     }
-    content = await AsyncHttpx.post("https://aiapiv2.animedb.cn/detect", data=None, files=files)
+    content = await AsyncHttpx.post("https://aiapiv2.animedb.cn/ai/api/detect", data=None, files=files)
     content = json.loads(content.text)
     if (len(content['data']) == 0):
         await single.send("抱歉图片中未识别到动漫人物")
@@ -74,7 +74,7 @@ async def handle_event(bot: Bot, event: MessageEvent, state: T_State):
     files = {
         'image': open("1.png", 'rb')
     }
-    content = await AsyncHttpx.post("https://aiapiv2.animedb.cn/detect?force_one=1", data=None, files=files)
+    content = await AsyncHttpx.post("https://aiapiv2.animedb.cn/ai/api/detect?force_one=1", data=None, files=files)
     # logger.info(content.text)
     content = json.loads(content.text)
     if (len(content['data']) == 0):
