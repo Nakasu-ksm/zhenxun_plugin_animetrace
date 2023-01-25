@@ -98,4 +98,4 @@ async def handle_event(bot: Bot, event: MessageEvent, state: T_State):
         message_list.append(link(char, i['char'][0]['name']))
         char = ""
     message_list.append(link("共预测到" + str(len(content['data'])) + "个角色\n" + "感谢使用，支持列表请到官网查看!"))
-    await bot.send_group_forward_msg(group_id=event.group_id, messages=message_list)
+    await bot.send_group_forward_msg(group_id=event.group_id, messages=message_list) if isinstance(event,GroupMessageEvent) else await bot.send_private_forward_msg(user_id=event.user_id, messages=message_list)
